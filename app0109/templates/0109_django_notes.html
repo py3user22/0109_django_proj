@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        p {border: 2px blue solid; padding: 5px;}
+    </style>
+    <title>0109 django notes API throttling class-based views </title>
+</head>
+<body>
+    <h2>0109 django notes > API throttling </h2>
+    <p>
+        |___#ex0109 API throttling classed-based views.py <br>|------------- <i><u>views.py</u></i> <br><br>
+        | from django.shortcuts import render <br>
+        | from rest_framework import viewsets <br>
+        | from .models import MenuItem <br>
+        | from .serializers import MenuItemSerializer <br>
+        | from rest_framework.throttling import UserRateThrottle, AnonRateThrottle <br>
+        | <br>| <br>
+        | class MenuItemsViewSet(viewsets.ModelViewSet): <br>
+        | .. queryset = MenuItem.objects.all() <br>
+        | .. serializer_class = MenuItemSerializer <br>
+        | .. <strike>throttle_classes = [AnonRateThrottle, UserRateThrottle] </strike> <br>
+        | <br>
+        | # conditional throttling used for API endpoints with specific HTTP methods, like GET, POST <br><br>
+        | .. def get_throttles(self): <br>
+        | ...... if self.action == 'create':  <br>
+        | .......... throttle_classes = [UserRateThrottle] <br>
+        | ...... else: <br>
+        | .......... throttle_classes = [] <br>
+        | ...... return [throttle() for throttle in throttle_classes] <br>
+        | <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        |___#ex0109 map the MenuItemViewSet class, to the API endpoint 'menu-items' <br>| --------------<i><u>urls.py</u></i> <br>
+        | urlpatterns = [<br>
+        | .. path('menu-items', views.MenuItemViewSet.as_view({'get':'list'})), <br>
+        | .. path('menu-items/< int:pk>', views.MenuItemViewSet.as_view({'get':'retrieve'})), <br>
+        | ] <br>
+        <br>
+        <br>
+        <br>
+        notes 0109: can list all menu items by using <br>
+        >> <i>http://127.0.0.1:8000/</i><b><i><u>api/menu-items</u></i></b>  <br>
+        <br>
+        can list any single menu item <br>
+        >> <i>http://127.0.0.1:8000/</i><b><i><u>api/menu-items/1</u></i></b>  <br>
+        <br>
+        <br>
+    </p>
+    <hr>
+    <br><br>
+    <p>
+        | ___#ex0109 edit the settings.py to allow for throttle <br> |--------------<i><u>settings.py</u></i> <br>
+        | 'DEFAULT_THROTTLE_CLASSES': [ <br>
+        | .. 'rest_framework.throttling.AnonRateThrottle', <br>
+        | .. 'rest_framework.throttling.UserRateThrottle', <br>
+        | ], <br>
+        <br>
+        <br>
+        <br>
+        | note: to limit the API calls per minute for authenticated users and anonymous users <br>
+        | 'DEFAULT_THROTTLE_RATES': { <br>
+        | .. 'anon': '2/minute',
+        | .. 'user': '10/minute',
+        | } <br>
+
+
+
+
+    </p>
+</body>
+</html>
