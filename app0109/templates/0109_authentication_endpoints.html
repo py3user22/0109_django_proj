@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .rrss {color: purple;}
+    </style>
+    <title>0109 django registration & authentication endpoints w/ JWT</title>
+</head>
+<body>
+    <h2>0109 authentication endpoints w/ JWT demo1</h2>
+    <p>
+        ___#0109 django authentication JWT (json web token) endpoints install demo <br>---------------------<br>
+        __#open shell <br>
+        1- pipenv shell <br>
+        <br>
+        __# install on pipenv<br>
+        2- pipenv install djangorestframework-simplejwt~=5.2.1 <br>
+        <br>
+
+    </p>
+    <p>
+        ___#ex0109 edit setting.py to include ' simplejwt ' <br>-----------------<i><b>settings.py</b></i> <br>
+        <br>
+        <br>
+        INSTALLED_APPS = [<br>
+        | .. 'rest_framework', <br>
+        | .. 'rest_framework.authtoken', <br>
+        | .. 'djoser', <br>
+        | .. <a href="simp">'rest_framework_simplejwt'</a>, <br>
+        ] <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        __#ex0109 edit2 > add to default_authentication_classes >> rest_framework copy <br>----------------<br><br>
+        REST_FRAMEWORK = { <br>
+        | .. 'DEFAULT_RENDERER_CLASSES: [ <br>
+        | ...... 'rest_framework.renderers.JSONRenderer', <br>
+        | ...... 'rest_framework.renderers.BrowsableAPIRenderer', <br>
+        | ...... 'rest_framework.xml.renderers.XMLRenderer', <br>
+        | .. ], <br>
+        | .. 'DEFAULT_AUTHENTICATION_CLASSES': { <br>
+        | ...... 'rest_framework.authentication.TokenAuthentication', <br>
+        | ...... 'rest_framework.authentication.SessionAuthentication', <br>
+        | ...... <a href="blue">'rest_framework_simplejwt.authentication.JWTAuthentication'</a>, <br>
+        | .. }, <br>
+        | .. 'DEFAULT_THROTTLE_RATES': { <br>
+        | ...... 'anon':'2/minute', <br>
+        | ...... 'user''5/minute', <br>
+        | ...... 'ten':'10/minute' <br>
+        | .. } <br>
+        } <br>
+        <br>
+        <br>
+        <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        ___#ex0109 urls.py > add new imports, and token API urls <br>----------------------------<br>
+        <br>
+        <br>
+        <a href="from">from</a> <a href="sjwt" class="rrss">rest_framework_simplejwt.views</a> <a href="impo">import</a> TokenObtainPairView, TokenRefreshView <br>
+        <br>
+        urlpatterns = [ <br>
+        | .. path('admin/', admin.site.urls), <br>
+        | .. path('api/', include('app0109.urls')), <br>
+        | .. path('auth/', include('djoser.urls')), <br>
+        | .. path('auth/', include(djoser.urls.authtoken')), <br>
+        | .. path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), <br>
+        | .. path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'), <br>
+
+        ] <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+
+
+</body>
+</html>

@@ -46,23 +46,21 @@
         | ...... 'rest_framework.renderers.JSONRenderer', <br>
         | ...... 'rest_framework.renderers.BrowsableAPIRenderer', <br>
         | ...... 'rest_framework.xml.renderers.XMLRenderer', <br>
-        | ], <br>
+        | .. ], <br>
         | .. 'DEFAULT_AUTHENTICATION_CLASSES': { <br>
         | ...... 'rest_framework.authentication.TokenAuthentication', <br>
         | ...... 'rest_framework.authentication.SessionAuthentication', <br>
-        | }, <br>
+        | .. }, <br>
         | .. 'DEFAULT_THROTTLE_RATES': { <br>
         | ...... 'anon':'2/minute', <br>
         | ...... 'user''5/minute', <br>
         | ...... 'ten':'10/minute' <br>
         | .. } <br>
-        | } <br>
-        <br>
-        <br>
         } <br>
         <br>
         <br>
         <br>
+        ---------------------------------------------<br>
         notes: if want to use the django admin login and the djoser browsable API view > use the sessionAuthentication option in settings.py<br>
         <br>
         | .. 'DEFAULT_AUTHENTICATION_CLASSES': { <br>
