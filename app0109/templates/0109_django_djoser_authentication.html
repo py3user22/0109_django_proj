@@ -26,9 +26,99 @@
         ___#ex0109 edit setting.py to include djoser <br>-----------------<i><b>settings.py</b></i> <br>
         <br>
         <br>
+        | INSTALLED_APPS = [<br>
+        | .. 'rest_framework', <br>
+        | .. 'rest_framework.authtoken', <br>
+        | .. 'djoser', <br>
+        | ] <br>
+        <br>
+        <br>
+        __# create new section named ' djoser' <br>
+        | DJOSER = { <br>
+        | .. "USER_ID_FIELD": "username", <br>
+        | .. "LOGIN_FIELD":"email", <br>
+        | } <br>
+        <br>
+        <br>
+        __#ex0109 rest_framework copy <br>----------------<br>
+        REST_FRAMEWORK = { <br>
+        | .. 'DEFAULT_RENDERER_CLASSES: [ <br>
+        | ...... 'rest_framework.renderers.JSONRenderer', <br>
+        | ...... 'rest_framework.renderers.BrowsableAPIRenderer', <br>
+        | ...... 'rest_framework.xml.renderers.XMLRenderer', <br>
+        | ], <br>
+        | .. 'DEFAULT_AUTHENTICATION_CLASSES': { <br>
+        | ...... 'rest_framework.authentication.TokenAuthentication', <br>
+        | ...... 'rest_framework.authentication.SessionAuthentication', <br>
+        | }, <br>
+        | .. 'DEFAULT_THROTTLE_RATES': { <br>
+        | ...... 'anon':'2/minute', <br>
+        | ...... 'user''5/minute', <br>
+        | ...... 'ten':'10/minute' <br>
+        | .. } <br>
+        | } <br>
+        <br>
+        <br>
+        } <br>
+        <br>
+        <br>
+        <br>
+        notes: if want to use the django admin login and the djoser browsable API view > use the sessionAuthentication option in settings.py<br>
+        <br>
+        | .. 'DEFAULT_AUTHENTICATION_CLASSES': { <br>
+        | ...... 'rest_framework.authentication.TokenAuthentication', <br>
+        | ...... 'rest_framework.authentication.SessionAuthentication', <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        ___#ex0109 settings.py  databases example with SQL <br>----------------<br>
+        DATABASES = { <br>
+        | .. 'default': { <br>
+        | ...... 'ENGINE': 'django.db.backends.mysql',  <br>
+        | ...... 'NAME': 'little_lemon',  <br>
+        | ...... 'USER': 'root',  <br>
+        | ...... 'PASSWORD': 'root',  <br>
+        | ...... 'HOST': '127.0.0.1',  <br>
+        | ...... 'PORT': 3306,  <br>
+        | .. } <br>
+        }
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        ___#ex0109 urls.py <br>----------------------------<br>
+        urlpatterns = [ <br>
+        | .. path('admin/', admin.site.urls), <br>
+        | .. path('api/', include('app0109.urls')), <br>
+        | .. path('auth/', include('djoser.urls')), <br>
+        | .. path('auth/', include(djoser.urls.authtoken')), <br>
+        ] <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        ___#0109 list of API endpoints can use with djoser <br>--------------------- <b><i>http://127.0.0.1:8000/auth</i></b> <br>
 
-
+        | 1- /users <br>
+        | 2- /users/me/ <br>
+        | 3- /users/confirm <br>
+        | 4- /users/resend_activation <br>
+        | 5- /users/set_password <br>
+        | 6- /users/reset_password/ <br>
+        | 7- /users/reset_password_confirm/ <br>
+        | 8- /users/set_username/ <br>
+        | 9- /users/reset_username/ <br>
+        | 10- /users/reset_username_confirm/ <br>
+        | 11- /token/login/ <br>
+        | 12- /token/logout/ <br>
+        <br>
+        <br>
 
     </p>
+
 </body>
 </html>
