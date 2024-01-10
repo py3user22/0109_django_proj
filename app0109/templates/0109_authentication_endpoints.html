@@ -31,9 +31,13 @@
         | .. 'rest_framework.authtoken', <br>
         | .. 'djoser', <br>
         | .. <a href="simp">'rest_framework_simplejwt'</a>, <br>
+        | .. <a href="simm">'rest_framework_simplejwt.token_blacklist'</a>, <br>
         ] <br>
         <br>
         <br>
+        ------------------------<br>
+        note: ex0109 must make migrations after install the app for simplejwt.token_blacklist <br>
+
         <br>
         <br>
         __#ex0109 edit2 > add to default_authentication_classes >> rest_framework copy <br>----------------<br><br>
@@ -65,7 +69,7 @@
         ___#ex0109 urls.py > add new imports, and token API urls <br>----------------------------<br>
         <br>
         <br>
-        <a href="from">from</a> <a href="sjwt" class="rrss">rest_framework_simplejwt.views</a> <a href="impo">import</a> TokenObtainPairView, TokenRefreshView <br>
+        <a href="from">from</a> <a href="sjwt" class="rrss">rest_framework_simplejwt.views</a> <a href="impo">import</a> TokenObtainPairView, TokenRefreshView, TokenBlacklistView <br>
         <br>
         urlpatterns = [ <br>
         | .. path('admin/', admin.site.urls), <br>
@@ -74,7 +78,7 @@
         | .. path('auth/', include(djoser.urls.authtoken')), <br>
         | .. path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), <br>
         | .. path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'), <br>
-
+        | .. path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'), <br>
         ] <br>
     </p>
     <hr>
