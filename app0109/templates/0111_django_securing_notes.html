@@ -20,7 +20,9 @@
         | ...... 'price': {'min_value': 5} <br>
         | .. } <br>
         | <br>
-        | X> using validate_price_lt method <br>
+        | using validate <br>
+        | <br>
+
         <br>
         <br>
     </p>
@@ -28,7 +30,11 @@
         ___# how to limit an API endpoint so that only POST, PUT, PATCH, DELETE, will be throttled ___# but GET will not be. <br>
         |1- write a custom throttle class & override the get_throttles method <br>
         | <br>
-        |Xwriting scoped throttle class...
+        | writing a custom throttle class & using it inside decorator @throttle_classes <br>--------------------------<br>
+        | @api_view() <br>
+        | @throttle_classess() <br>
+        <br>
+
         <br>
           <br>
         API throttling video > mod3 lesson2 > More on API throttling section
@@ -45,7 +51,9 @@
         how can you enable support for sorting the API output by 2 fields: age/gender <br>
         >> manually parsing the query string <br>
         <br>
-        Xno code change is req.... <br>
+        >> ordering_fields=['age', 'gender']  in classed-based view.py <br>
+        <br>
+
         <br>
         reading > More on filtering & pagination > mod3
     </p>
@@ -54,7 +62,7 @@
         /users/ <br>
         /users/me/ <br>
         <br>
-        X/user  , /user/me <br>
+
         <br>
         video > intro to djoser library for better authentication> mod3 l2 <br>
         <br>
@@ -64,11 +72,12 @@
         it automatically expires after the default expiration time <br>----------------------------
         <br>
         <br>
-        how can you assign users to user group?
+        __________________________<br>
+        how can you assign users to user group? <br>
         >> from django admin panel <br>
+        > group object method ' user_set.add() ' <br>
         <br>
-        X> djoser lib... <br>
-        X> making a call to /users.... <br>
+
         <br>
         video > Userroles > mod3, l2 <br>
         ------------------------------------<br>
@@ -85,18 +94,18 @@
     </p>
     <p>
         what happens when blacklist a JWT refresh token?
-        >>  <br>
+        >> cannot be used to generate new access tokens anymore <br>
         <br>
-        X cannot be used to gen new refresh tokens <br>
+
         <br>
-        video > authentication endpoints w/ JWT > mod3, l2 <br>
+        video > registration and authentication endpoints w/ JWT > mod3, l2 <br>
 
     </p>
     <p>
         which prefix must be used w/ tokens to success authenticate an API call in plain DRF <br>
-        >> <br>
+        >> Token <br>
         <br>
-        X bearer.. <br>
+
         <br>
         video > token-based authentication in DRF, mod3, l2 <br>
         <br>
