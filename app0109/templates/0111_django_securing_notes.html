@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        p {border: 2px blue solid; padding: 5px;}
+    </style>
+    <title>0111 django securing an api</title>
+</head>
+<body>
+    <p>
+        ___#ex0111 quiz > securing an API in DRF <br>----------------<br>
+        | ________# validate field ' price ' to not be less than 5 in serializer  <br>
+        | ..>> price = serializers.DecimalField(max_digits=6, decimal_places=2, min_value=5) <br>
+        | <br>|___________ <br>
+        | .. extra_kwargs: { <br>
+        | ...... 'price': {'min_value': 5} <br>
+        | .. } <br>
+        | <br>
+        | X> using validate_price_lt method <br>
+        <br>
+        <br>
+    </p>
+    <p>
+        ___# how to limit an API endpoint so that only POST, PUT, PATCH, DELETE, will be throttled ___# but GET will not be. <br>
+        |1- write a custom throttle class & override the get_throttles method <br>
+        | <br>
+        |Xwriting scoped throttle class...
+        <br>
+          <br>
+        API throttling video > mod3 lesson2 > More on API throttling section
+    </p>
+    <p>
+        for token-based authentication, DRF does support authentications by default <br>
+        True <br>
+        you need to install djoser library because DRF doesnt support by default <br>
+        False <br>
+        <br>
+
+    </p>
+    <p>
+        how can you enable support for sorting the API output by 2 fields: age/gender <br>
+        >> manually parsing the query string <br>
+        <br>
+        Xno code change is req.... <br>
+        <br>
+        reading > More on filtering & pagination > mod3
+    </p>
+    <p>
+        valid endponts auto created by djoser <br>----------------------<br>
+        /users/ <br>
+        /users/me/ <br>
+        <br>
+        X/user  , /user/me <br>
+        <br>
+        video > intro to djoser library for better authentication> mod3 l2 <br>
+        <br>
+    </p>
+    <p>
+        you can manually expire a JWT access token anytime? >> False <br>
+        it automatically expires after the default expiration time <br>----------------------------
+        <br>
+        <br>
+        how can you assign users to user group?
+        >> from django admin panel <br>
+        <br>
+        X> djoser lib... <br>
+        X> making a call to /users.... <br>
+        <br>
+        video > Userroles > mod3, l2 <br>
+        ------------------------------------<br>
+        <br>
+        <br>
+
+    </p>
+    <p>
+        which prefix do you use to successfully authenticate a token using SimpleJWT library? <br>
+        ---------------------------<br>
+        Bearer -> prepend the work 'bearer' before the actual token <br>
+        .. to make sure JWT processes it and authenticates if token is valid <br>
+        .. note: auto done in insomnia and postman apps. <br>
+    </p>
+    <p>
+        what happens when blacklist a JWT refresh token?
+        >>  <br>
+        <br>
+        X cannot be used to gen new refresh tokens <br>
+        <br>
+        video > authentication endpoints w/ JWT > mod3, l2 <br>
+
+    </p>
+    <p>
+        which prefix must be used w/ tokens to success authenticate an API call in plain DRF <br>
+        >> <br>
+        <br>
+        X bearer.. <br>
+        <br>
+        video > token-based authentication in DRF, mod3, l2 <br>
+        <br>
+        <br>
+        <br>
+        external package used to sanitize html tags from user input data <br>
+        Bleach <br>
+    </p>
+
+</body>
+</html>
